@@ -24,7 +24,7 @@ int main(int argc, char** argv) {
 //    buildMinHeapify<double>(A,10);
     buildMaxHeapify<double>(A,10);
     std::cout<<"Result:";
-    for(int i=0;i<11;i++){
+    for(int i=0;i<11;i++){s
         std::cout<<A[i]<<" ";
     }
     return 0;
