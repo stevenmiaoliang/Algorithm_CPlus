@@ -17,7 +17,6 @@
 template <typename T> 
 class HeapData{
 public:
-   
     HeapData(size_t _length);
     virtual ~HeapData();
     
@@ -33,17 +32,12 @@ public:
     T& operator [](size_t index); 
     
 private:
-    T*  data;
+    T  data[10];
     size_t length;
 };
 
 template<typename T> HeapData<T>::HeapData(size_t _length)
 {
-    if(_length <1024){
-        data = new T(1024);
-    }else{
-        data = new T(_length);
-    }
     memset(data,0,sizeof(T)*_length);
     length = _length;
 }

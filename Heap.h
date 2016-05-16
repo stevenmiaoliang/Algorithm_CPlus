@@ -23,30 +23,16 @@
 #define HEAP_LEFT(i)        (2*i+1)
 #define HEAP_RIGHT(i)       (2*i+2)
 
-
 template<typename T> void HeapData<T>::setDataIndex(size_t index, T value)
 {
     if(index>=0 && index<length){
-        T B[10]= {0};
-        
         data[index] = value;
-        memcpy(B,data,10*sizeof(T));
-        int k = 0;
     }
 }
 
 template<typename T> void HeapData<T>::resize(size_t _length)
 {
-    if(_length>length){
-        T* temp = new T(_length);
-        for(size_t index =0;index<length;index++){
-            temp[index] = data[index];
-        }
-        delete data;
-        data = temp;
-    }else{
-        length = _length;
-    }
+    length = _length;
 }
 
 template<typename T> T& HeapData<T>::operator [](size_t index)
@@ -147,6 +133,12 @@ template <typename T> void buildMinHeapify(T* A,size_t length){
     }
 }
 
+template <typename T> void deleteMaxHeapItem(HeapData<T>& A,size_t index)
+{
+    A[index] = A[A.getLength()-1];
+    A.resize(A.getLength()-1);
+    maxHeapifyRecursion<T>(A,index);
+}
 
 #endif /* HEAP_H */
 
