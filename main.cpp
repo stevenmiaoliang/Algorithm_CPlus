@@ -20,12 +20,20 @@ using namespace std;
  * 
  */
 int main(int argc, char** argv) {
-    double A[10] = {1,2,3,4,5,6,7,8,9,10};
+    
+    unsigned int  A[10] = {1,2,3,4,5,6,7,8,9,10};
 //    buildMinHeapify<double>(A,10);
-    buildMaxHeapify<double>(A,10);
-    std::cout<<"Result:";
-    for(int i=0;i<11;i++){s
-        std::cout<<A[i]<<" ";
+    HeapData<unsigned int> heapData(10);
+    for(int i=0;i<10;i++){
+        heapData[i] = A[i];
+        heapData.setDataIndex(i,A[i]);
+    }
+
+    buildMaxHeapify<unsigned int>(heapData);
+    
+    for(int i=0;i<10;i++){
+        unsigned int t = heapData[i];
+        t++;
     }
     return 0;
 }

@@ -14,17 +14,51 @@
 #ifndef HEAP_H
 #define HEAP_H
 #include <iostream>
+#include <memory.h>
 #include <cstddef>
+#include <vector>
 #include "Function.h"
+#include "HeapData.h"
 #define HEAP_PARENT(i)      i/2
 #define HEAP_LEFT(i)        (2*i+1)
 #define HEAP_RIGHT(i)       (2*i+2)
 
-template <typename T> void maxHeapifyRecursion(T* A,size_t length,int i)
+
+template<typename T> void HeapData<T>::setDataIndex(size_t index, T value)
 {
-    if(A == NULL || length == 0){
-        return;
+    if(index>=0 && index<length){
+        T B[10]= {0};
+        
+        data[index] = value;
+        memcpy(B,data,10*sizeof(T));
+        int k = 0;
     }
+}
+
+template<typename T> void HeapData<T>::resize(size_t _length)
+{
+    if(_length>length){
+        T* temp = new T(_length);
+        for(size_t index =0;index<length;index++){
+            temp[index] = data[index];
+        }
+        delete data;
+        data = temp;
+    }else{
+        length = _length;
+    }
+}
+
+template<typename T> T& HeapData<T>::operator [](size_t index)
+{
+    if(index>=0 && index<length){
+        return data[index];
+    }
+}
+
+template <typename T> void maxHeapifyRecursion(HeapData<T>& A,int i)
+{
+    size_t length = A.getLength();
     size_t l = HEAP_LEFT(i);
     size_t r = HEAP_RIGHT(i);
     size_t largest = 0;
@@ -38,20 +72,16 @@ template <typename T> void maxHeapifyRecursion(T* A,size_t length,int i)
     }
 
     if(largest != i){
-        swap<T>(A[i],A[largest]);
-        for(int i=0;i<length;i++){
-            std::cout<<A[i]<<" ";
-        }
-        std::cout<<std::endl;
-        maxHeapifyRecursion<T>(A,length,largest);
+        T* iData = A.getDataPtrIndex(i);
+        T* largestData = A.getDataPtrIndex(largest);
+        swap<T>(*iData,*largestData);
+        maxHeapifyRecursion<T>(A,largest);
     }
 }
 
-template <typename T> void maxHeapifyCircle(T* A,size_t length,int i)
+template <typename T> void maxHeapifyCircle(HeapData<T>& A,int i)
 {
-    if(A == NULL || length == 0){
-        return;
-    }
+    size_t length = A.getLength();
 
     size_t largest = i;
     size_t largestTemp = largest;
@@ -72,18 +102,15 @@ template <typename T> void maxHeapifyCircle(T* A,size_t length,int i)
         }else{
             break;
         }
-         for(int i=0;i<length;i++){
-            std::cout<<A[i]<<" ";
-        }
-        std::cout<<std::endl;
         largest = largestTemp;
 
     }
 }
 
-template <typename T> void buildMaxHeapify(T* A,size_t length){
+template <typename T> void buildMaxHeapify(HeapData<T>& A){
+    size_t length = A.getLength();
     for(int i=length/2;i>=0;i--){
-        maxHeapifyCircle<T>(A,length,i);
+        maxHeapifyCircle<T>(A,i);
     }
 }
 
