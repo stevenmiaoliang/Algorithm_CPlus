@@ -23,7 +23,7 @@
 #define HEAP_LEFT(i)        (2*i+1)
 #define HEAP_RIGHT(i)       (2*i+2)
 
-template<typename T> void HeapData<T>::setDataIndex(size_t index, T value)
+template<typename T> void HeapData<T>::setDataIndex(size_t index,T value)
 {
     if(index>=0 && index<length){
         data[index] = value;
@@ -89,7 +89,6 @@ template <typename T> void maxHeapifyCircle(HeapData<T>& A,int i)
             break;
         }
         largest = largestTemp;
-
     }
 }
 

@@ -27,6 +27,9 @@ TreeNode::TreeNode(int _key){
     right = 0;
     key = _key;
 }
+TreeNode::~TreeNode(){
+
+}
 
 BinaryTree::BinaryTree() {
     root = 0;
@@ -64,14 +67,14 @@ void BinaryTree::insertNode(TreeNode* node)
 {
     TreeNode* y = 0;
     TreeNode* x = root;
-    while(x != 0){
+     while(x != 0){
         y = x;
         if(node->key <x->key){
             x = x->left;
         }else{
             x = x->right;
         }
-    }
+     }
     node->parent = x;
     if(y == 0){
         root = node;

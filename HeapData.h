@@ -72,6 +72,5 @@ template<typename T> T* HeapData<T>::getDataPtrIndex(size_t index)
     }
 }
 
-
 #endif /* HEAPDATA_H */
 

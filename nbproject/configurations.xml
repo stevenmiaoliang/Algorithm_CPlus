@@ -8,9 +8,11 @@
       <itemPath>Function.h</itemPath>
       <itemPath>Heap.h</itemPath>
       <itemPath>HeapData.h</itemPath>
+      <itemPath>List.h</itemPath>
       <itemPath>PriorityQueue.h</itemPath>
       <itemPath>QuickSort.h</itemPath>
       <itemPath>RedBlackTree.h</itemPath>
+      <itemPath>Stack.h</itemPath>
       <itemPath>sort.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
@@ -60,6 +62,8 @@
       </item>
       <item path="HeapData.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="List.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="PriorityQueue.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="QuickSort.h" ex="false" tool="3" flavor2="0">
@@ -67,6 +71,8 @@
       <item path="RedBlackTree.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="RedBlackTree.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Stack.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -107,6 +113,8 @@
       </item>
       <item path="HeapData.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="List.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="PriorityQueue.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="QuickSort.h" ex="false" tool="3" flavor2="0">
@@ -114,6 +122,8 @@
       <item path="RedBlackTree.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="RedBlackTree.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Stack.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>

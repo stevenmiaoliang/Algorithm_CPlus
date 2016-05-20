@@ -30,13 +30,14 @@ public:
     RedBlackTreeNode(int key):TreeNode(key){
         color = NODE_COLOR_BLACK;
     }
-    RedBlackTreeNode(int key,NODE_COLOR_BLACK color):TreeNode(key){
+    RedBlackTreeNode(int key,NODECOLOR color):TreeNode(key){
         color = NODE_COLOR_BLACK;
     }
+    virtual ~RedBlackTreeNode(){};
     RedBlackTreeNode* parent;
     RedBlackTreeNode* left;
     RedBlackTreeNode* right;
-    NODE_COLOR_BLACK color;
+    NODECOLOR color;
 };
 
 class RedBlackTree:BinaryTree {
