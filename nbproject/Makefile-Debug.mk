@@ -21,8 +21,8 @@ FC=gfortran
 AS=as
 
 # Macros
-CND_PLATFORM=GNU-Linux
-CND_DLIB_EXT=so
+CND_PLATFORM=Cygwin-Windows
+CND_DLIB_EXT=dll
 CND_CONF=Debug
 CND_DISTDIR=dist
 CND_BUILDDIR=build
@@ -35,6 +35,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/BTree.o \
 	${OBJECTDIR}/BinaryTree.o \
 	${OBJECTDIR}/Heap.o \
 	${OBJECTDIR}/RedBlackTree.o \
@@ -60,11 +61,16 @@ LDLIBSOPTIONS=
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/algorithm_cplus
+	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/algorithm_cplus.exe
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/algorithm_cplus: ${OBJECTFILES}
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/algorithm_cplus.exe: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/algorithm_cplus ${OBJECTFILES} ${LDLIBSOPTIONS}
+
+${OBJECTDIR}/BTree.o: BTree.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/BTree.o BTree.cpp
 
 ${OBJECTDIR}/BinaryTree.o: BinaryTree.cpp 
 	${MKDIR} -p ${OBJECTDIR}
@@ -97,7 +103,7 @@ ${OBJECTDIR}/sort.o: sort.cpp
 # Clean Targets
 .clean-conf: ${CLEAN_SUBPROJECTS}
 	${RM} -r ${CND_BUILDDIR}/${CND_CONF}
-	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/algorithm_cplus
+	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/algorithm_cplus.exe
 
 # Subprojects
 .clean-subprojects:

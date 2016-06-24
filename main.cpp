@@ -16,13 +16,19 @@
 #include "Heap.h"
 #include "PriorityQueue.h"
 #include "QuickSort.h"
+#include "BTree.h"
 using namespace std;
 
 /*
  * 
  */
 int main(int argc, char** argv) {
-    unsigned int  A[10] = {2,8,7,1,3,5,6,4,9,10};
+    unsigned char A[20] = {'C','N','G','A','H','E','K','Q','M','F','W','L','T','Z','D','P','R','X','Y','S',};
+    
+    BTree tree;
+    for(int i=0;i<20;i++){
+        tree.insert(A[i]);
+    }
 //    buildMinHeapify<double>(A,10)
     HeapData<unsigned int> heapData(10);
     for(int i=0;i<10;i++){
@@ -33,7 +39,7 @@ int main(int argc, char** argv) {
     
     buildMaxHeapify<unsigned int>(heapData);
     deleteMaxHeapItem<unsigned int>(heapData,1);
-    for(int i=0;i<10;i++){
+    for(int i=0;i<9;i++){
         unsigned int t = heapData[i];
         
     }
