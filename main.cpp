@@ -18,16 +18,26 @@
 #include "QuickSort.h"
 #include "BTree.h"
 #include "RedBlackTree.h"
+#include "vEBTree.h"
 using namespace std;
 
 /*
  * 
  */
 int main(int argc, char** argv) {
-    unsigned char A[20] = {4,19,0,17,10,12,8,11,18,1,6,16,7,14,9,3,13,2,5,15};
+    unsigned char A[7] = {2,3,4,5,7,14,15};
+    
+    vEBTree vebTree;
+    vebTree.create(vebTree.root,16);
+    for(int i=0;i<7;i++){
+        vebTree.insert(vebTree.root,A[i]);
+    }
+    int successor = vebTree.presuccessor(vebTree.root,5);
+    bool ret = vebTree.member(vebTree.root,3);
+    
     
     RBTree tree;
-    for(int i=0;i<20;i++){
+    for(int i=0;i<7;i++){
         tree.insert(A[i]);
     }
 //    buildMinHeapify<double>(A,10)

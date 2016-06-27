@@ -40,7 +40,8 @@ OBJECTFILES= \
 	${OBJECTDIR}/Heap.o \
 	${OBJECTDIR}/RedBlackTree.o \
 	${OBJECTDIR}/main.o \
-	${OBJECTDIR}/sort.o
+	${OBJECTDIR}/sort.o \
+	${OBJECTDIR}/vEBTree.o
 
 
 # C Compiler Flags
@@ -96,6 +97,11 @@ ${OBJECTDIR}/sort.o: sort.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/sort.o sort.cpp
+
+${OBJECTDIR}/vEBTree.o: vEBTree.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/vEBTree.o vEBTree.cpp
 
 # Subprojects
 .build-subprojects:
