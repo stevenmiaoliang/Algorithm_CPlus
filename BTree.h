@@ -20,6 +20,12 @@ using namespace std;
 #define SPLIT_INDEX  MAX_NODE/2
 #define ERROR_V    -10000000
 
+typedef enum _NODELEVEL{
+    NODE_FULL,
+    NODE_MID,
+    NODE_POOR,
+}NODELEVEL;
+
 class BTreeListNode{
 public:
     BTreeListNode(int _key):key(_key){}
@@ -36,12 +42,17 @@ public:
     bool insert(BTreeNode* node);
     bool removeChild(int index);
     bool isFull();
+    NODELEVEL getLevel();
     int minKey();
     int maxKey();
     int operator [] (int index); 
     BTreeNode* getChild(int index);
     int inRange(int key);
+    //查找Key所需要在的节点
     BTreeNode* searchNode(int key);
+    //查找Key所在的节点
+    BTreeNode* search(int key,int& index);
+    BTreeNode* rightBrother();
 public:
     BTreeNode*       parent;
     unsigned char keys[MAX_NODE];
@@ -55,9 +66,12 @@ public:
     BTree();
     virtual ~BTree();
 public:
+    BTreeNode* search(int key,int& index);
     void insert(int key);
     void deleteItem(int key);
     bool split(BTreeNode* node);
+    bool merge(BTreeNode* node);
+    bool refactoring(BTreeNode* node);
 private:
     BTreeNode*      root;
     

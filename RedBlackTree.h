@@ -21,39 +21,63 @@ typedef enum _NODECOLOR
     NODE_COLOR_RED = 1,
 }NODECOLOR;
 
-class RedBlackTreeNode:public TreeNode
+typedef enum _NODEPOS{
+    NODE_POS_ROOT,
+    NODE_POS_LEFT,
+    NODE_POS_RIGHT,
+}NODEPOS;
+
+class RBTreeNode
 {
 public:
-    RedBlackTreeNode():TreeNode(){
+    RBTreeNode(){
         color = NODE_COLOR_BLACK;
     }
-    RedBlackTreeNode(int key):TreeNode(key){
+    RBTreeNode(int _key){
+        key = _key;
         color = NODE_COLOR_BLACK;
     }
-    RedBlackTreeNode(int key,NODECOLOR color):TreeNode(key){
-        color = NODE_COLOR_BLACK;
+    RBTreeNode(int _key,NODECOLOR _color){
+        color = _color;
+        key = _key;
     }
-    virtual ~RedBlackTreeNode(){};
-    RedBlackTreeNode* parent;
-    RedBlackTreeNode* left;
-    RedBlackTreeNode* right;
+    virtual ~RBTreeNode(){};
+    
+    RBTreeNode* grandparent();
+    RBTreeNode* uncle();
+    RBTreeNode* brother();
+   
+public:
+    RBTreeNode* parent;
+    RBTreeNode* left;
+    RBTreeNode* right;
+    int key;
     NODECOLOR color;
 };
 
-class RedBlackTree:BinaryTree {
+class RBTree:BinaryTree {
 public:
-    RedBlackTree();
-    virtual ~RedBlackTree();
+    RBTree();
+    virtual ~RBTree();
     
-    void insertNode(RedBlackTreeNode* node);
-    void deleteNode(RedBlackTreeNode* node);
     
+    RBTreeNode* find(int key);
+    void insert(int key);
+    void deleteNode(int key);
+     
 private:
-    void RedBlackTreeFixup(RedBlackTreeNode* node);
+     //判定当前节点是其负父的左子还是右子
+    NODEPOS  getPos(RBTreeNode* node);
+    void insertFixup(RBTreeNode* node);
     
+    
+   
+    void leftRotate(RBTreeNode* node);
+    void rightRotate(RBTreeNode* node);
+    void showTree(RBTreeNode* node);
 private:
-    RedBlackTreeNode*  root;
-    RedBlackTreeNode*  sentry;
+    RBTreeNode*  root;
+    RBTreeNode*  sentry;
 };
 
 #endif /* REDBLACKTREE_H */

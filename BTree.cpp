@@ -114,13 +114,22 @@ bool BTreeNode::insert(BTreeNode* node)
     childNumber--;
  }
 
-
 bool BTreeNode::isFull(){
      if(keyNumber>=MAX_NODE){
         return true;
     }
      return false;
 }
+
+NODELEVEL BTreeNode::getLevel(){
+    if(keyNumber<SPLIT_INDEX){
+        return NODE_POOR;
+    }else if(keyNumber == SPLIT_INDEX){
+        return NODE_MID;
+    }
+    return NODE_FULL;
+}
+
 int BTreeNode::minKey()
 {
     return keys[0];
@@ -163,7 +172,7 @@ int BTreeNode::inRange(int key){
 
 BTreeNode* BTreeNode::searchNode(int key){
     BTreeNode* node = this;
-    BTreeNode* nodeT = this;
+    BTreeNode* nodeT = 0;
     while(node != 0){
         if(node->childNumber == node->keyNumber+1){
             node = node->childs[inRange(key)];
@@ -174,13 +183,45 @@ BTreeNode* BTreeNode::searchNode(int key){
     }
     return nodeT;
 }
+
+BTreeNode* BTreeNode::search(int key,int& index){
+    BTreeNode* node = this;
+    while(node != 0){
+        for(int i=0;i<node->keyNumber;i++){
+            if(node->keys[i] == key){
+                index = i;
+                return node;
+            }
+        }
+        node = node->childs[inRange(key)];
+    }
+}
+
+BTreeNode* BTreeNode::rightBrother(){
+    BTreeNode* node = 0;
+    int currentIndex = 0;
+    for(int i=0;i<parent->childNumber;i++){
+        if(parent->childs[i] == this){
+            currentIndex = i;
+            break;
+        }
+    }
+    if(currentIndex < parent->childNumber-1){
+        node = parent->childs[currentIndex+1];
+    }
+    return node;
+}
+
 BTree::BTree() {
     root = 0;
 }
 
 BTree::~BTree() {
 }
-
+BTreeNode* BTree::search(int key,int& index){
+    BTreeNode* node = root->search(key,index);
+    return node;
+}
 
 void BTree::insert(int key){
     if(root == 0){
@@ -236,3 +277,24 @@ bool BTree::split(BTreeNode* node){
         }
     }   
 }
+
+ void BTree::deleteItem(int key){
+     int index = 0;
+     BTreeNode* node = search(key,index);
+     if(node == 0){
+         return;
+     }
+     node->remove(index);
+     if(node->getLevel() == NODE_POOR){
+         
+     }
+ }
+ 
+ bool BTree::merge(BTreeNode* node){
+     
+ }
+ 
+ bool BTree::refactoring(BTreeNode* node){
+     
+     
+ }

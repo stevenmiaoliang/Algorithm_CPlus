@@ -17,15 +17,16 @@
 #include "PriorityQueue.h"
 #include "QuickSort.h"
 #include "BTree.h"
+#include "RedBlackTree.h"
 using namespace std;
 
 /*
  * 
  */
 int main(int argc, char** argv) {
-    unsigned char A[20] = {'C','N','G','A','H','E','K','Q','M','F','W','L','T','Z','D','P','R','X','Y','S',};
+    unsigned char A[20] = {4,19,0,17,10,12,8,11,18,1,6,16,7,14,9,3,13,2,5,15};
     
-    BTree tree;
+    RBTree tree;
     for(int i=0;i<20;i++){
         tree.insert(A[i]);
     }
